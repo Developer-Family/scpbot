@@ -24,6 +24,7 @@ jobs:
   test:
     executor: node
     steps:
+      - checkout
       - run: yarn test --passWithNoTests
 
   deploy:
@@ -38,7 +39,9 @@ workflows:
   build-test-deploy:
     jobs:
       - build
-      - test
-      - deploy:
+      - test:
           requires:
             - build
+      - deploy:
+          requires:
+            - test
