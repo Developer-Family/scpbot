@@ -15,9 +15,7 @@
   },
   "scripts": {
     "build": "echo \"Building app\"",
-    "test": "echo \"Error: no test specified\"",
-    "start": "node src/main.js",
-    "dev": "nodemon -e tsc --exec \"yarn build && npm start\""
+    "test": "echo \"Error: no test specified\""
   },
   "author": "TazWind && Kaendor",
   "license": "ISC"
