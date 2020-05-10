@@ -12,6 +12,7 @@ process.on("SIGINT", () => {
 bot.on("ready", () => {
   bot.user.setActivity(`=help | SCP Info`, { type: "WATCHING" });
   console.log("Bot prêt !");
+  process.send("ready");
 });
 
 bot.login(process.env.BOT_TOKEN);
