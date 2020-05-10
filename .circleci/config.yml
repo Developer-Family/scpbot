@@ -35,6 +35,8 @@ jobs:
           echo $SSH_HOST
       - run: |
           echo '$SSH_HOST ecdsa-sha2-nistp256 SHA256:s1oJsUUbUvR+d0NIhFVXOwHwa3buiqTiptQq6XeE6E4' >> ~/.ssh/known_hosts
+      - run: |
+          cat ~/.ssh/known_hosts
       - run:
           name: Deploy over SSH
           command: |
