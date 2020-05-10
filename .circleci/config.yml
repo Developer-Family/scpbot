@@ -31,10 +31,10 @@ jobs:
     executor: node
     steps:
       - add_ssh_keys
-      - run: |
+      - run:
+        name: Add Known host
+        command: |
           ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
-      - run: |
-          cat ~/.ssh/known_hosts
       - run:
           name: Deploy over SSH
           command: |
