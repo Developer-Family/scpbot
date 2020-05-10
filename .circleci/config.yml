@@ -32,9 +32,9 @@ jobs:
     steps:
       - add_ssh_keys
       - run:
-        name: Add Known host
-        command: |
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+          name: Add Known host
+          command: |
+            ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
       - run:
           name: Deploy over SSH
           command: |
