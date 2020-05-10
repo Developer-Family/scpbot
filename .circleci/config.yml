@@ -1,28 +1,30 @@
 version: 2.1
-orbs:
-  node: circleci/node@1.1.6
 jobs:
   build:
+    docker:
+      - image: circleci/node:10.16.3
+
     executor:
       name: node/default
     steps:
+      - checkout
       - restore_cache:
           name: Restore Yarn Package Cache
           keys:
             - yarn-packages-{{ checksum "yarn.lock" }}
       - run:
           name: Install Dependencies
-          command: yarn install --frozen-lockfile
+          command: yarn --frozen-lockfile
       - save_cache:
           name: Save Yarn Package Cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
             - ~/.cache/yarn
+      - run: yarn build
   test:
     steps:
-      - run:
-          name: "Testing"
-          command: echo 'test'
+      - run: yarn test --passWithNoTests
+
   deploy:
     steps:
       - run:
