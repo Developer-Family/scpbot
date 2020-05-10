@@ -30,7 +30,9 @@ jobs:
   deploy:
     executor: node
     steps:
-      - add_ssh_keys
+      - add_ssh_keys:
+          fingerprints:
+            - "d0:77:7f:76:f8:2d:0d:ea:82:f7:0d:97:d8:05:ab:3d"
       - run:
           name: Deploy over SSH
           command: |
