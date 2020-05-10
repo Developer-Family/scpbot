@@ -23,17 +23,16 @@ jobs:
       - run:
           command: echo 'test'
   deploy:
-    machine:
-      enabled: true
     steps:
       - run:
           name: Deploy over SSH
-          command: echo 'deploying'
+          command: |
+            ssh $SSH_USER@$SSH_HOST "cd ~/repo/scpbot && git pull && yarn build"
 
 workflows:
-    build-test-deploy:
-      jobs:
-        - build-and-test
-        - deploy:
-            requires:
-              - build
+  build-test-deploy:
+    jobs:
+      - build-and-test
+      - deploy:
+          requires:
+            - build
