@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Deploy over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST -o StrictHostKeyChecking=no -v "cd ~/repo/scpbot && git pull && yarn build"
+            ssh $SSH_USER@$SSH_HOST -v "cd ~/repo/scpbot && git pull && yarn build"
 
 workflows:
   build-test-deploy:
