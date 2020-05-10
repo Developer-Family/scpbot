@@ -30,7 +30,7 @@ jobs:
   deploy:
     executor: node
     steps:
-      - add_ssh_keys:
+      - add_ssh_keys
       - run: |
           echo '$SSH_HOST ecdsa-sha2-nistp256 SHA256:s1oJsUUbUvR+d0NIhFVXOwHwa3buiqTiptQq6XeE6E4' >> ~/.ssh/known_hosts
       - run:
