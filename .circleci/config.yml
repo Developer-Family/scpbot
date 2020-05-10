@@ -30,6 +30,8 @@ jobs:
   deploy:
     executor: node
     steps:
+      - run: |
+          ssh $SSH_USER@$SSH_HOST
       - run:
           name: Deploy over SSH
           command: |
