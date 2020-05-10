@@ -1,11 +1,11 @@
 version: 2.1
-jobs:
-  build:
+executors:
+  node:
     docker:
       - image: circleci/node:10.16.3
-
-    executor:
-      name: node/default
+jobs:
+  build:
+    executor: node
     steps:
       - checkout
       - restore_cache:
@@ -22,10 +22,12 @@ jobs:
             - ~/.cache/yarn
       - run: yarn build
   test:
+    executor: node
     steps:
       - run: yarn test --passWithNoTests
 
   deploy:
+    executor: node
     steps:
       - run:
           name: Deploy over SSH
