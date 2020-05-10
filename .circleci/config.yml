@@ -30,8 +30,7 @@ jobs:
   deploy:
     executor: node
     steps:
-      - run: |
-          ssh $SSH_USER@$SSH_HOST
+      - add_ssh_keys
       - run:
           name: Deploy over SSH
           command: |
