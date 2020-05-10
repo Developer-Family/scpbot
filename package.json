@@ -15,7 +15,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/bot.js",
+    "start": "node src/main.js",
     "dev": "nodemon -e tsc --exec \"yarn build && npm start\""
   },
   "author": "TazWind && Kaendor",
