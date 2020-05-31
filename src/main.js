@@ -2,8 +2,8 @@ const Discord = require("discord.js");
 const express = require("express");
 const app = express();
 
-var bot = new Discord.Client();
-var prefix = "=";
+const bot = new Discord.Client();
+const prefix = "=";
 
 process.on("SIGINT", () => {
   process.exit(err ? 1 : 0);
@@ -19,7 +19,7 @@ bot.login(process.env.BOT_TOKEN);
 
 bot.on("message", (message) => {
   if (message.content === prefix + "help") {
-    var help_embed = new Discord.RichEmbed()
+    const help_embed = new Discord.RichEmbed()
       .setColor("RANDOM")
       .addField(
         "__Commandes du Bot SCP__:",
@@ -598,7 +598,9 @@ bot.on("message", (message) => {
     var show_914 = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-914__:")
-      .setImage("http://fondationscp.wdfiles.com/local--files/scp-914/gears.jpg");
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-914/gears.jpg"
+      );
     message.channel.sendEmbed(show_914);
     console.log("Commande Image 914 faite");
   }
@@ -609,36 +611,44 @@ bot.on("message", (message) => {
       .setImage("https://img-9gag-fun.9cache.com/photo/aB8pbPN_700bwp.webp");
     message.channel.sendEmbed(show_343);
     console.log("Commande Image 343 faite");
-  } 
+  }
   if (message.content === prefix + "show 1025") {
     var show_1025 = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-1025__:")
-      .setImage("http://fondationscp.wdfiles.com/local--files/scp-1025/SCP-1025.jpg");
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-1025/SCP-1025.jpg"
+      );
     message.channel.sendEmbed(show_1025);
     console.log("Commande Image 1025 faite");
-  } 
+  }
   if (message.content === prefix + "show 1074") {
     var show_1074 = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-1074__:")
-      .setImage("http://fondationscp.wdfiles.com/local--files/scp-1074/1074.jpg");
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-1074/1074.jpg"
+      );
     message.channel.sendEmbed(show_1074);
     console.log("Commande Image 1074 faite");
-  } 
+  }
   if (message.content === prefix + "show 1123") {
     var show_1123 = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-1123__:")
-      .setImage("http://fondationscp.wdfiles.com/local--files/scp-1123/SCP-1123.jpg");
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-1123/SCP-1123.jpg"
+      );
     message.channel.sendEmbed(show_1123);
     console.log("Commande Image 1123 faite");
-  } 
+  }
   if (message.content === prefix + "show 049") {
     var show_049 = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-049__:")
-      .setImage("http://fondationscp.wdfiles.com/local--files/scp-049/SCP-049.jpg");
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-049/SCP-049.jpg"
+      );
     message.channel.sendEmbed(show_049);
     console.log("Commande Image 049 faite");
   }
