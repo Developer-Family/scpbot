@@ -594,6 +594,22 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_1025);
     console.log("Commande Info 1025 faite");
   }
+  if (message.content === prefix + "show 914") {
+    var show_914 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-914__:")
+      .setImage("http://fondationscp.wdfiles.com/local--files/scp-914/gears.jpg");
+    message.channel.sendEmbed(show_914);
+    console.log("Commande Image 914 faite");
+  }
+  if (message.content === prefix + "show 343") {
+    var show_343 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-343__:")
+      .setImage("https://img-9gag-fun.9cache.com/photo/aB8pbPN_700bwp.webp");
+    message.channel.sendEmbed(show_343);
+    console.log("Commande Image 343 faite");
+  } 
   if (message.content === prefix + "show 049") {
     var show_049 = new Discord.RichEmbed()
       .setColor("RANDOM")
