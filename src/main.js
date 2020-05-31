@@ -610,6 +610,30 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_343);
     console.log("Commande Image 343 faite");
   } 
+  if (message.content === prefix + "show 1025") {
+    var show_1025 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-1025__:")
+      .setImage("http://fondationscp.wdfiles.com/local--files/scp-1025/SCP-1025.jpg");
+    message.channel.sendEmbed(show_1025);
+    console.log("Commande Image 1025 faite");
+  } 
+  if (message.content === prefix + "show 1074") {
+    var show_1074 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-1074__:")
+      .setImage("http://fondationscp.wdfiles.com/local--files/scp-1074/1074.jpg");
+    message.channel.sendEmbed(show_1074);
+    console.log("Commande Image 1074 faite");
+  } 
+  if (message.content === prefix + "show 1123") {
+    var show_1123 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-1123__:")
+      .setImage("http://fondationscp.wdfiles.com/local--files/scp-1123/SCP-1123.jpg");
+    message.channel.sendEmbed(show_1123);
+    console.log("Commande Image 1123 faite");
+  } 
   if (message.content === prefix + "show 049") {
     var show_049 = new Discord.RichEmbed()
       .setColor("RANDOM")
