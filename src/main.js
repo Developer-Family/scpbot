@@ -594,6 +594,10 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_1025);
     console.log("Commande Info 1025 faite");
   }
+
+  //Commadns Show:
+
+  // SCP Safe:
   if (message.content === prefix + "show 914") {
     const show_914 = new Discord.RichEmbed()
       .setColor("RANDOM")
@@ -642,6 +646,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_1123);
     console.log("Commande Image 1123 faite");
   }
+
+  // SCP Euclid:
   if (message.content === prefix + "show 049") {
     const show_049 = new Discord.RichEmbed()
       .setColor("RANDOM")
@@ -651,26 +657,6 @@ bot.on("message", (message) => {
       );
     message.channel.sendEmbed(show_049);
     console.log("Commande Image 049 faite");
-  }
-  if (message.content === prefix + "show 106") {
-    const show_106 = new Discord.RichEmbed()
-      .setColor("RANDOM")
-      .setTitle("Voici __SCP-106__:")
-      .setImage(
-        "http://scp-wiki.wdfiles.com/local--files/scp-106/that%20man.jpg"
-      );
-    message.channel.sendEmbed(show_106);
-    console.log("Commande Image 106 faite");
-  }
-  if (message.content === prefix + "show 682") {
-    const show_682 = new Discord.RichEmbed()
-      .setColor("RANDOM")
-      .setTitle("Voici __SCP-682__:")
-      .setImage(
-        "http://fondationscp.wdfiles.com/local--files/scp-682/monster8.jpg"
-      );
-    message.channel.sendEmbed(show_682);
-    console.log("Commande Image 682 faite");
   }
   if (message.content === prefix + "show 527") {
     const show_527 = new Discord.RichEmbed()
@@ -689,5 +675,87 @@ bot.on("message", (message) => {
       );
     message.channel.sendEmbed(show_066);
     console.log("Commande Image 066 faite");
+  }
+
+  // SCP Keter:
+  if (message.content === prefix + "show 682") {
+    const show_682 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-682__:")
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-682/monster8.jpg"
+      );
+    message.channel.sendEmbed(show_682);
+    console.log("Commande Image 682 faite");
+  }
+  if (message.content === prefix + "show 062-fr") {
+    const show_062fr = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-062-FR__:")
+      .setImage(
+        "https://i.ytimg.com/vi/3A9rS0Fgefk/maxresdefault.jpg"
+      );
+    message.channel.sendEmbed(show_062fr);
+    console.log("Commande Image 062-FR faite");
+  }
+  if (message.content === prefix + "show 017") {
+    const show_017 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-017__:")
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-017/017--SCP-017.jpg"
+      );
+    message.channel.sendEmbed(show_017);
+    console.log("Commande Image 017 faite");
+  }
+  if (message.content === prefix + "show 029") {
+    const show_029 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-029__:")
+      .setImage(
+        "http://fondationscp.wdfiles.com/local--files/scp-029/sc-029.png"
+      );
+    message.channel.sendEmbed(show_029);
+    console.log("Commande Image 029 faite");
+  }
+  if (message.content === prefix + "show 035") {
+    const show_035 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-035__:")
+      .setImage(
+        "http://scp-wiki.wdfiles.com/local--files/scp-035/scp--035--002-new.gif"
+      );
+    message.channel.sendEmbed(show_035);
+    console.log("Commande Image 035 faite");
+  }
+  if (message.content === prefix + "show 079") {
+    const show_079 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-079__:")
+      .setImage(
+        "https://em.wattpad.com/3f6485cdd98350d85bd8e323191bd9c9fb04b3f3/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f64516c3475674c694f4c76382d413d3d2d3733323132383330352e3135396537383434613464333833656532363835313532343635302e6a7067?s=fit&w=720&h=720"
+      );
+    message.channel.sendEmbed(show_079);
+    console.log("Commande Image 079 faite");
+  }
+  if (message.content === prefix + "show 106") {
+    const show_106 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-106__:")
+      .setImage(
+        "http://scp-wiki.wdfiles.com/local--files/scp-106/that%20man.jpg"
+      );
+    message.channel.sendEmbed(show_106);
+    console.log("Commande Image 106 faite");
+  }
+  if (message.content === prefix + "show 939") {
+    const show_939 = new Discord.RichEmbed()
+      .setColor("RANDOM")
+      .setTitle("Voici __SCP-939__:")
+      .setImage(
+        "https://i.pinimg.com/564x/7f/b6/06/7fb606ca2f3031cda0bed5fb58d7c5be.jpg"
+      );
+    message.channel.sendEmbed(show_939);
+    console.log("Commande Image 939 faite");
   }
 });
