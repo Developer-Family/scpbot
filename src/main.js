@@ -7,8 +7,8 @@ require("dotenv").config();
 const bot = new Discord.Client();
 const prefix = "=";
 
-process.on("SIGINT", (err) => {
-  process.exit(err ? 1 : 0);
+process.on("SIGINT", () => {
+  process.exit(0);
 });
 
 bot.on("ready", () => {
