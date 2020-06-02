@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const express = require("express");
 const app = express();
 
+require('dotenv').config()
+
 const bot = new Discord.Client();
 const prefix = "=";
 
@@ -18,6 +20,8 @@ bot.on("ready", () => {
 bot.login(process.env.BOT_TOKEN);
 
 bot.on("message", (message) => {
+  
+  // Command Info:
   if (message.content === prefix + "help") {
     const help_embed = new Discord.RichEmbed()
       .setColor("RANDOM")
