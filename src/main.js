@@ -2,12 +2,12 @@ const Discord = require("discord.js");
 const express = require("express");
 const app = express();
 
-require('dotenv').config()
+require("dotenv").config();
 
 const bot = new Discord.Client();
 const prefix = "=";
 
-process.on("SIGINT", () => {
+process.on("SIGINT", (err) => {
   process.exit(err ? 1 : 0);
 });
 
@@ -20,7 +20,6 @@ bot.on("ready", () => {
 bot.login(process.env.BOT_TOKEN);
 
 bot.on("message", (message) => {
-  
   // Command Info:
   if (message.content === prefix + "help") {
     const help_embed = new Discord.RichEmbed()
@@ -696,9 +695,7 @@ bot.on("message", (message) => {
     const show_062fr = new Discord.RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-062-FR__:")
-      .setImage(
-        "https://i.ytimg.com/vi/3A9rS0Fgefk/maxresdefault.jpg"
-      );
+      .setImage("https://i.ytimg.com/vi/3A9rS0Fgefk/maxresdefault.jpg");
     message.channel.sendEmbed(show_062fr);
     console.log("Commande Image 062-FR faite");
   }
