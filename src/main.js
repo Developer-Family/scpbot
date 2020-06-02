@@ -18,7 +18,11 @@ bot.on("ready", () => {
 });
 
 console.log("Token : %s", process.env.BOT_TOKEN);
-bot.login(process.env.BOT_TOKEN);
+try {
+  bot.login(process.env.BOT_TOKEN);
+} catch (err) {
+  throw err;
+}
 
 bot.on("message", (message) => {
   // Command Info:
