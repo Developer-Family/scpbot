@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 require("dotenv").config();
-import winston from "winston";
+const winston = require("winston");
 
 const bot = new Discord.Client();
 const prefix = "=";
