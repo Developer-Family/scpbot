@@ -1,28 +1,39 @@
 const Discord = require("discord.js");
-const express = require("express");
-const app = express();
-
 require("dotenv").config();
+import winston from "winston";
 
 const bot = new Discord.Client();
 const prefix = "=";
+
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console(),
+    new winston.transports.File({ filename: "log" }),
+  ],
+  format: winston.format.printf(
+    (log) => `[${log.level.toUpperCase()}] - ${log.message}`
+  ),
+});
 
 process.on("SIGINT", () => {
   process.exit(0);
 });
 
+bot.on("debug", (m) => logger.log("debug", m));
+bot.on("warn", (m) => logger.log("warn", m));
+bot.on("error", (m) => logger.log("error", m));
+
+process.on("uncaughtException", (error) => logger.log("error", error));
+
 bot.on("ready", () => {
   bot.user.setActivity(`=help | SCP Info`, { type: "WATCHING" });
-  console.log("Bot prêt !");
+  logger.log("Bot prêt !");
   process.send("ready");
 });
 
-console.log("Token : %s", process.env.BOT_TOKEN);
-try {
-  bot.login(process.env.BOT_TOKEN);
-} catch (err) {
-  throw err;
-}
+logger.log("Token : %s", process.env.BOT_TOKEN);
+
+bot.login(process.env.BOT_TOKEN);
 
 bot.on("message", (message) => {
   // Command Info:
