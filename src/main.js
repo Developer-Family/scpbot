@@ -6,6 +6,7 @@ const bot = new Discord.Client();
 const prefix = "=";
 
 const logger = winston.createLogger({
+  level: "debug",
   transports: [
     new winston.transports.Console(),
     new winston.transports.File({ filename: "log" }),
@@ -13,6 +14,7 @@ const logger = winston.createLogger({
   format: winston.format.printf(
     (log) => `[${log.level.toUpperCase()}] - ${log.message}`
   ),
+  rejectionHandlers: [new winston.transports.Console()],
 });
 
 process.on("SIGINT", () => {
@@ -31,7 +33,7 @@ bot.on("ready", () => {
   process.send("ready");
 });
 
-logger.log("Token : %s", process.env.BOT_TOKEN);
+logger.log("debug", `Token : ${process.env.BOT_TOKEN}`);
 
 bot.login(process.env.BOT_TOKEN);
 
