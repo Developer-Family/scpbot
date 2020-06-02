@@ -22,7 +22,7 @@
     "build": "tsc",
     "test": "echo \"Error: no test specified\"",
     "start": "node dist/bot.js",
-    "watch": "nodemon --inspect=5656 --exec \"node -r ts-node/register ./src/main.ts\""
+    "watch": "nodemon --inspect=5656 --exec \"node -r ts-node/register ./src/bot.ts\""
   },
   "author": "TazWind && Kaendor",
   "license": "ISC"
