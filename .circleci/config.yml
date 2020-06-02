@@ -38,7 +38,20 @@ jobs:
       - run:
           name: Deploy over SSH
           command: |
-            ssh $SSH_USER@$SSH_HOST -v "cd ~/repo/scpbot && git pull && yarn && yarn build && pm2 restart scp-bot"
+            ssh $SSH_USER@$SSH_HOST -v "cd ~/repo/scpbot && git pull && yarn && yarn build"
+
+  startOrRestart:
+    executor: node
+    steps:
+      - add_ssh_keys
+      - run:
+          name: Add Known host
+          command: |
+            ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
+      - run:
+          name: Deploy over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST -v "pm2 restart scp-bot"
 
 workflows:
   build-test-deploy:
@@ -52,5 +65,12 @@ workflows:
           requires:
             - test
       - deploy:
+          requires:
+            - hold
+      - hold:
+          type: approval
+          requires:
+            - deploy
+      - startOrRestart:
           requires:
             - hold
