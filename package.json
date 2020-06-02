@@ -2,7 +2,7 @@
   "name": "scp-bot",
   "version": "1.0.1",
   "description": "Scp Bot info",
-  "main": "src/main.js",
+  "main": "dist/bot.js",
   "dependencies": {
     "config.js": "^0.1.0",
     "discord.js": "^11.4.2",
@@ -11,13 +11,18 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "@types/node": "^13.13.4",
-    "nodemon": "^2.0.3",
-    "typescript": "^3.8.3"
+    "@types/node": "^14.0.9",
+    "@types/winston": "^2.4.4",
+    "eslint": "^7.1.0",
+    "nodemon": "^2.0.4",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.3"
   },
   "scripts": {
-    "build": "echo \"Building app\"",
-    "test": "echo \"Error: no test specified\""
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\"",
+    "start": "node dist/bot.js",
+    "watch": "nodemon --inspect=5656 --exec \"node -r ts-node/register ./src/main.ts\""
   },
   "author": "TazWind && Kaendor",
   "license": "ISC"

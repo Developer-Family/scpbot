@@ -1,46 +1,55 @@
-const Discord = require("discord.js");
+import { prettyJson } from "./helpers/prettyJson";
+// const Discord = require("discord.js");
+import { Client, RichEmbed } from "discord.js";
 require("dotenv").config();
-const winston = require("winston");
+import { createLogger, transports, format } from "winston";
 
-const bot = new Discord.Client();
-const prefix = "=";
+const { BOT_TOKEN, DEBUG, PREFIX } = process.env;
 
-const logger = winston.createLogger({
-  level: "debug",
+const bot = new Client();
+
+const logger = createLogger({
+  level: DEBUG ? "debug" : "info",
   transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: "log" }),
+    new transports.Console(),
+    new transports.File({ filename: "log" }),
   ],
-  format: winston.format.printf(
-    (log) => `[${log.level.toUpperCase()}] - ${log.message}`
+  format: format.combine(
+    format.colorize(),
+    format.prettyPrint(),
+    format.splat(),
+    format.simple(),
+    prettyJson
   ),
-  rejectionHandlers: [new winston.transports.Console()],
+  exceptionHandlers: [new transports.Console()],
 });
 
 process.on("SIGINT", () => {
   process.exit(0);
 });
 
-bot.on("debug", (m) => logger.log("debug", m));
-bot.on("warn", (m) => logger.log("warn", m));
-bot.on("error", (m) => logger.log("error", m));
+bot.on("debug", (message) => logger.debug(message));
+bot.on("warn", (message) => logger.warn(message));
+bot.on("error", (message) => logger.error(message));
 
-process.on("uncaughtException", (error) => logger.log("error", error));
+process.on("uncaughtException", (error) => logger.error(error));
 
 bot.on("ready", () => {
   bot.user.setActivity(`=help | SCP Info`, { type: "WATCHING" });
-  logger.log("Bot prêt !");
-  process.send("ready");
+  logger.info("Bot prêt !");
+  if (process.send) {
+    process.send("ready");
+  }
 });
 
-logger.log("debug", `Token : ${process.env.BOT_TOKEN}`);
+logger.log("debug", `Token : ${BOT_TOKEN}`);
 
-bot.login(process.env.BOT_TOKEN);
+bot.login(BOT_TOKEN);
 
 bot.on("message", (message) => {
   // Command Info:
-  if (message.content === prefix + "help") {
-    const help_embed = new Discord.RichEmbed()
+  if (message.content === PREFIX + "help") {
+    const help_embed = new RichEmbed()
       .setColor("RANDOM")
       .addField(
         "__Commandes du Bot SCP__:",
@@ -66,8 +75,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(help_embed);
     console.log("Commande help faite");
   }
-  if (message.content === prefix + "don") {
-    const don_embed = new Discord.RichEmbed()
+  if (message.content === PREFIX + "don") {
+    const don_embed = new RichEmbed()
       .setColor("RANDOM")
       .addField(
         "__**Pour faire un don ça ce passe ici**__:",
@@ -78,8 +87,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(don_embed);
     console.log("Commande don faite");
   }
-  if (message.content === prefix + "info 527") {
-    const scp_527 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 527") {
+    const scp_527 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail("http://scp-wiki.wdfiles.com/local--files/scp-527/fish.png")
       .addField("**Objet#**:", "SCP-527")
@@ -104,8 +113,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_527);
     console.log("Commande Info 527 faite");
   }
-  if (message.content === prefix + "info 682") {
-    const scp_682 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 682") {
+    const scp_682 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://scp-wiki.wdfiles.com/local--files/scp-682/monster8editub9.jpg"
@@ -136,8 +145,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_682);
     console.log("Commande Info 682 faite");
   }
-  if (message.content === prefix + "info 914") {
-    const scp_914 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 914") {
+    const scp_914 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://fondationscp.wdfiles.com/local--files/scp-914/gears3a.jpg"
@@ -172,8 +181,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_914);
     console.log("Commande Info 914 faite");
   }
-  if (message.content === prefix + "info 106") {
-    const scp_106 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 106") {
+    const scp_106 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://scp-wiki.wdfiles.com/local--files/scp-106/that%20man.jpg"
@@ -216,8 +225,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_106);
     console.log("Commande Info 106 faite");
   }
-  if (message.content === prefix + "info 006-fr") {
-    const scp_006fr = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 006-fr") {
+    const scp_006fr = new RichEmbed()
       .setColor("RANDOM")
       .addField("**Objet#**:", "SCP-006-FR")
       .addField("**Niveau de Menace**:", "Orange ")
@@ -262,8 +271,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_006fr);
     console.log("Commande Info 006-FR faite");
   }
-  if (message.content === prefix + "info 011-fr") {
-    const scp_011fr = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 011-fr") {
+    const scp_011fr = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://fondationscp.wdfiles.com/local--files/scp-011-fr/1358103143-221-fr.jpg"
@@ -294,8 +303,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_011fr);
     console.log("Commande Info 011-FR faite");
   }
-  if (message.content === prefix + "info 060-fr") {
-    const scp_060fr = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 060-fr") {
+    const scp_060fr = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://fondationscp.wdfiles.com/local--files/scp-060-fr/wC4tuke.jpg"
@@ -343,8 +352,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_060fr);
     console.log("Commande Info 060-FR");
   }
-  if (message.content === prefix + "info 173") {
-    const scp_173 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 173") {
+    const scp_173 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://fondationscp.wdfiles.com/local--files/scp-173/0LrEW.jpg"
@@ -371,8 +380,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_173);
     console.log("Commande Info 173 faite");
   }
-  if (message.content === prefix + "info bright") {
-    const dr_bright = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info bright") {
+    const dr_bright = new RichEmbed()
       .setColor("RANDOM")
       .addField("**Objet#**:", "Dr Bright")
       .addField("**Classe**:", "Apollyon")
@@ -391,8 +400,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(dr_bright);
     console.log("Commande Dr Bright faite");
   }
-  if (message.content === prefix + "info 137-fr") {
-    const scp_137fr = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 137-fr") {
+    const scp_137fr = new RichEmbed()
       .setColor("RANDOM")
       .addField("**Objet#**:", "SCP-137-FR")
       .addField("**Niveau de Menace**:", "Jaune")
@@ -436,8 +445,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_137fr);
     console.log("Commande Info 134-FR faite");
   }
-  if (message.content === prefix + "info 343") {
-    const scp_343 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 343") {
+    const scp_343 = new RichEmbed()
       .setColor("RANDOM")
       .addField("**Objet#**:", "SCP-343")
       .addField("**Classe**:", "Safe")
@@ -457,8 +466,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_343);
     console.log("Commande Info 343 faite");
   }
-  if (message.content === prefix + "info 1074") {
-    const scp_1074_1 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 1074") {
+    const scp_1074_1 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://fondationscp.wdfiles.com/local--files/scp-1074/1074.jpg"
@@ -526,8 +535,8 @@ bot.on("message", (message) => {
     console.log("Commande Info 1074 faite");
   }
 
-  if (message.content === prefix + "info 1123") {
-    const scp_1123 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 1123") {
+    const scp_1123 = new RichEmbed()
       .setColor("RANDOM")
       .setThumbnail(
         "http://fondationscp.wdfiles.com/local--files/scp-1123/SCP-1123.jpg"
@@ -590,8 +599,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(scp_1123);
     console.log("Commande Info 1123 faite");
   }
-  if (message.content === prefix + "info 1025") {
-    const scp_1025 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "info 1025") {
+    const scp_1025 = new RichEmbed()
       .setColor("RANDOM")
       .addField("**Objet#**:", "SCP-1025")
       .addField("**Classe**:", "~~Keter~~ Safe")
@@ -619,8 +628,8 @@ bot.on("message", (message) => {
   //Commadns Show:
 
   // SCP Safe:
-  if (message.content === prefix + "show 914") {
-    const show_914 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 914") {
+    const show_914 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-914__:")
       .setImage(
@@ -629,16 +638,16 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_914);
     console.log("Commande Image 914 faite");
   }
-  if (message.content === prefix + "show 343") {
-    const show_343 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 343") {
+    const show_343 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-343__:")
       .setImage("https://img-9gag-fun.9cache.com/photo/aB8pbPN_700bwp.webp");
     message.channel.sendEmbed(show_343);
     console.log("Commande Image 343 faite");
   }
-  if (message.content === prefix + "show 1025") {
-    const show_1025 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 1025") {
+    const show_1025 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-1025__:")
       .setImage(
@@ -647,8 +656,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_1025);
     console.log("Commande Image 1025 faite");
   }
-  if (message.content === prefix + "show 1074") {
-    const show_1074 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 1074") {
+    const show_1074 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-1074__:")
       .setImage(
@@ -657,8 +666,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_1074);
     console.log("Commande Image 1074 faite");
   }
-  if (message.content === prefix + "show 1123") {
-    const show_1123 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 1123") {
+    const show_1123 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-1123__:")
       .setImage(
@@ -669,8 +678,8 @@ bot.on("message", (message) => {
   }
 
   // SCP Euclid:
-  if (message.content === prefix + "show 049") {
-    const show_049 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 049") {
+    const show_049 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-049__:")
       .setImage(
@@ -679,16 +688,16 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_049);
     console.log("Commande Image 049 faite");
   }
-  if (message.content === prefix + "show 527") {
-    const show_527 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 527") {
+    const show_527 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-527__:")
       .setImage("http://scp-wiki.wdfiles.com/local--files/scp-527/fish.png");
     message.channel.sendEmbed(show_527);
     console.log("Commande Image 527 faite");
   }
-  if (message.content === prefix + "show 066") {
-    const show_066 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 066") {
+    const show_066 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-066__:")
       .setImage(
@@ -699,8 +708,8 @@ bot.on("message", (message) => {
   }
 
   // SCP Keter:
-  if (message.content === prefix + "show 682") {
-    const show_682 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 682") {
+    const show_682 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-682__:")
       .setImage(
@@ -709,16 +718,16 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_682);
     console.log("Commande Image 682 faite");
   }
-  if (message.content === prefix + "show 062-fr") {
-    const show_062fr = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 062-fr") {
+    const show_062fr = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-062-FR__:")
       .setImage("https://i.ytimg.com/vi/3A9rS0Fgefk/maxresdefault.jpg");
     message.channel.sendEmbed(show_062fr);
     console.log("Commande Image 062-FR faite");
   }
-  if (message.content === prefix + "show 017") {
-    const show_017 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 017") {
+    const show_017 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-017__:")
       .setImage(
@@ -727,8 +736,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_017);
     console.log("Commande Image 017 faite");
   }
-  if (message.content === prefix + "show 029") {
-    const show_029 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 029") {
+    const show_029 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-029__:")
       .setImage(
@@ -737,8 +746,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_029);
     console.log("Commande Image 029 faite");
   }
-  if (message.content === prefix + "show 035") {
-    const show_035 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 035") {
+    const show_035 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-035__:")
       .setImage(
@@ -747,8 +756,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_035);
     console.log("Commande Image 035 faite");
   }
-  if (message.content === prefix + "show 079") {
-    const show_079 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 079") {
+    const show_079 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-079__:")
       .setImage(
@@ -757,8 +766,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_079);
     console.log("Commande Image 079 faite");
   }
-  if (message.content === prefix + "show 106") {
-    const show_106 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 106") {
+    const show_106 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-106__:")
       .setImage(
@@ -767,8 +776,8 @@ bot.on("message", (message) => {
     message.channel.sendEmbed(show_106);
     console.log("Commande Image 106 faite");
   }
-  if (message.content === prefix + "show 939") {
-    const show_939 = new Discord.RichEmbed()
+  if (message.content === PREFIX + "show 939") {
+    const show_939 = new RichEmbed()
       .setColor("RANDOM")
       .setTitle("Voici __SCP-939__:")
       .setImage(
