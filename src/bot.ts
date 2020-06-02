@@ -15,6 +15,7 @@ const logger = createLogger({
     new transports.File({ filename: "log" }),
   ],
   format: format.combine(
+    format.timestamp(),
     format.colorize(),
     format.prettyPrint(),
     format.splat(),
