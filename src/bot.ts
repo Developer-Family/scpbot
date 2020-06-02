@@ -1,8 +1,8 @@
 import { prettyJson } from "./helpers/prettyJson";
-// const Discord = require("discord.js");
 import { Client, RichEmbed } from "discord.js";
 require("dotenv").config();
 import { createLogger, transports, format } from "winston";
+import { create017 } from "./show command/c017";
 
 const { BOT_TOKEN, DEBUG, PREFIX } = process.env;
 
@@ -727,12 +727,7 @@ bot.on("message", (message) => {
     console.log("Commande Image 062-FR faite");
   }
   if (message.content === PREFIX + "show 017") {
-    const show_017 = new RichEmbed()
-      .setColor("RANDOM")
-      .setTitle("Voici __SCP-017__:")
-      .setImage(
-        "http://fondationscp.wdfiles.com/local--files/scp-017/017--SCP-017.jpg"
-      );
+    const show_017 = create017();
     message.channel.sendEmbed(show_017);
     console.log("Commande Image 017 faite");
   }
