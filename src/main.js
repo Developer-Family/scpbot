@@ -17,6 +17,7 @@ bot.on("ready", () => {
   process.send("ready");
 });
 
+console.log("Token : %s", process.env.BOT_TOKEN);
 bot.login(process.env.BOT_TOKEN);
 
 bot.on("message", (message) => {
